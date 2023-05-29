@@ -7,6 +7,8 @@ import java.util.Map;
 
 public class HomeWork6 {
     static Map<Client, List<Account>> map = new HashMap<>();
+    static Map<Account, Client> map1 = new HashMap<>();
+
     public static void main(String[] args) {
 
         Client client1 = new Client(1, "Александр", 25);
@@ -38,8 +40,9 @@ public class HomeWork6 {
     }
 
     public static void addAccount(Client client, Account account) {
+        map1.put(account,client);
         if (map.containsKey(client)){
-        map.get(client).add(account);
+            map.get(client).add(account);
         }
         else {List<Account> accounts = new ArrayList<>();
             accounts.add(account);
@@ -53,12 +56,6 @@ public class HomeWork6 {
     }
 
     public static Client findClient(Account account) {
-        for (Map.Entry<Client, List<Account>> entry : map.entrySet()) {
-            if (entry.getValue().contains(account)) {
-                return entry.getKey();
-            }
-        }
-        return null;
+        return map1.get(account);
     }
-    }
-
+}
