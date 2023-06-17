@@ -1,4 +1,4 @@
-package HomeWork4;
+package Homework4;
 
 public class Question {
     private String questionText;
