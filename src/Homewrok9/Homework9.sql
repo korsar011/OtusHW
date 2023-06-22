@@ -9,7 +9,7 @@ CREATE TABLE answers
 answer_id 		SERIAL 		PRIMARY KEY,
 answer_text 	TEXT	 	NOT NULL UNIQUE,
 correct_answer 	BOOLEAN 	NOT NULL,
-question_id 	INTEGER 	REFERENCES questions (Question_id)
+question_id 	INTEGER 	REFERENCES questions (question_id)
 );
 
 INSERT INTO questions (question)
