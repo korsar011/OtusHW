@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Форма</title>
+    
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid black;
+        }
+        
+        tfoot td {
+            font-weight: bold;
+        }
+        
+        .input-form {
+            border: 1px solid black;
+            padding: 25px;
+            width: 300px;
+            margin-top: 10px;
+        }
+        
+        .input-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .input-form input[type="text"],
+        .input-form select,
+        .input-form input[type="date"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .input-form button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .input-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    
+    <script>
+        function addStudent() {
+            const studentsTab = document.getElementById("studentsTab");
+            let studentName = document.getElementById("studentName").value;
+            let studentSex = document.getElementById("studentSex").value;
+            let studentBirthday = document.getElementById("studentBirthday").value;
+            let studentAge = Math.floor((new Date() - new Date(studentBirthday)) / 1000 / 60 / 60 / 24 / 365);
+                
+            const newRow = studentsTab.insertRow(studentsTab.rows.length-2);
+            
+            let newCell = newRow.insertCell(-1);
+            newCell.appendChild(document.createTextNode(studentName));
+            
+            newCell = newRow.insertCell(-1);
+            newCell.appendChild(document.createTextNode(studentSex));
+            
+            newCell = newRow.insertCell(-1);
+            newCell.appendChild(document.createTextNode(studentBirthday));
+            
+            newCell = newRow.insertCell(-1);
+            newCell.appendChild(document.createTextNode(studentAge));
+            
+            updateAverageAge();
+        }
+        
+        function updateAverageAge() {
+            const studentsTab = document.getElementById("studentsTab");
+            const rows = studentsTab.rows;
+            let totalAge = 0;
+            let studentCount = rows.length - 3; // Исключаем заголовок и подвал
+
+            for (let i = 1; i < studentCount + 1; i++) {
+                let age = parseInt(rows[i].cells[3].textContent);
+                totalAge += age;
+            }
+
+            let averageAge = totalAge / studentCount;
+            let averageAgeCells = rows[rows.length - 1].cells;
+            averageAgeCells[1].textContent = averageAge.toFixed(0);
+            averageAgeCells[2].textContent = averageAge.toFixed(0);
+            averageAgeCells[3].textContent = averageAge.toFixed(0);
+        }
+    </script>
+</head>
+<body>
+
+<table id="studentsTab">
+    <thead>
+        <tr>
+            <th>ФИО</th>
+            <th>Пол</th>
+            <th>Дата рождения</th>
+            <th>Возраст</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        
+        <tr> 
+            <td colspan="4">&nbsp;</td> 
+        </tr>  
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Средний возраст студентов</td>
+            <td colspan="3" align="center"></td>
+        </tr>    
+    </tfoot>
+</table>
+
+<div class="input-form"> 
+    <label> 
+        Новый студент:
+        <input id="studentName" type="text" placeholder="ФИО" value="">
+    </label>
+    <br>
+    <label>
+        Пол
+        <select id="studentSex" name="studentSex">
+            <option value="Мужской" selected>Мужской</option>
+            <option value="Женский">Женский</option>
+        </select>
+    </label>
+    <label for="studentBirthday">Дата рождения</label>
+    <input id="studentBirthday" name="studentBirthday" type="date" value="2000-05-04">
+    
+    <button onclick="addStudent()">Добавить</button>
+</div>
+
+</body>
+</html>
