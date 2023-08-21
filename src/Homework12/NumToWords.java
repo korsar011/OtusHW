@@ -1,8 +1,14 @@
 package Homework12;
 
 public class NumToWords {
-    public static String numberToWords(int n) {
-        String[] ones = {"", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"};
+    public static String numberToWords(int n, boolean isMale) {
+        String[] ones;
+        if (isMale) {
+            ones = new String[]{"", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"};
+        } else {
+            ones = new String[]{"", "одна", "две", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"};
+        }
+
         String[] teens = {"", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"};
         String[] tens = {"", "десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
         String[] hundreds = {"", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"};
@@ -17,7 +23,7 @@ public class NumToWords {
             words.append(hundreds[h]).append(" ");
         }
 
-        if (t == 1 && o > 0) {
+        if (t == 1) {
             words.append(teens[o]);
         } else {
             if (t > 0) {
@@ -27,6 +33,7 @@ public class NumToWords {
                 words.append(ones[o]);
             }
         }
+
 
         return words.toString().trim();
     }
