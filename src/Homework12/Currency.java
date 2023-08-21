@@ -21,23 +21,21 @@ public enum Currency implements CurrencyForm {
 
     @Override
     public String getMainForm(int n) {
-        if (n % 10 == 1 && n % 100 != 11) {
-            return oneMain;
-        } else if (2 <= n % 10 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) {
-            return fewMain;
-        } else {
-            return manyMain;
-        }
+        return getForm(n, oneMain, fewMain, manyMain);
     }
 
     @Override
     public String getFractionalForm(int n) {
+        return getForm(n, oneFractional, fewFractional, manyFractional);
+    }
+
+    private String getForm(int n, String oneForm, String fewForm, String manyForm) {
         if (n % 10 == 1 && n % 100 != 11) {
-            return oneFractional;
+            return oneForm;
         } else if (2 <= n % 10 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) {
-            return fewFractional;
+            return fewForm;
         } else {
-            return manyFractional;
+            return manyForm;
         }
     }
 }

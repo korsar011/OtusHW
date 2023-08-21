@@ -23,7 +23,7 @@ public class Money {
                     System.out.println(mainWord + " " + mainCurrency);
 
                 } else {
-                    String fractionalWord = NumToWords.numberToWords(fractionalAmount, false);
+                    String fractionalWord = NumToWords.numberToWords(fractionalAmount, false); // Это для копейки, у цента мужской род
                     String fractionalCurrency = Currency.RUBLE.getFractionalForm(fractionalAmount);
                     System.out.println(mainWord + " " + mainCurrency + " и " + fractionalWord + " " + fractionalCurrency);
                 }
