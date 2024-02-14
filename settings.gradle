@@ -1,0 +1,5 @@
+rootProject.name = 'OtusHW'
+include("rest-service")
+include("demo")
+include("Mediana")
+
