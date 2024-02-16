@@ -7,6 +7,3 @@ server:
     key-store-password: 111111
     key-alias: otusapi
 
-logging:
-  level:
-    root: debug
